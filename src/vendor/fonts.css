@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'Cabinet Grotesk Medium';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Cabinet Grotesk Medium'), url('./fonts/CabinetGrotesk-Medium.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Cabinet Grotesk Bold';
+        font-style: normal;
+        font-weight: 700;
+        src: local('Cabinet Grotesk Bold'), url('./fonts/CabinetGrotesk-Bold.woff') format('woff');
+        }
+
+
+    @font-face {
+        font-family: 'Cabinet Grotesk Black';
+        font-style: normal;
+        font-weight: 900;
+        src: local('Cabinet Grotesk Black'), url('./fonts/CabinetGrotesk-Black.woff') format('woff');
+        }
+
