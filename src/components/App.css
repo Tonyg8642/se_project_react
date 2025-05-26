@@ -3,7 +3,8 @@
 }
 
 .page__content {
-    max-width: 1360px;
-    margin: 0 auto;
-    padding: 0 20px;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 20px;
+  font-family: "Cabinet Grotesk Bold", Arial, Helvetica, sans-serif;
 }
