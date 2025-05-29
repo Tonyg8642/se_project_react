@@ -11,8 +11,8 @@
   visibility: hidden;
 }
 
-.modal__opened {
-    visibility: visible;
+.modal_opened {
+  visibility: visible;
 }
 
 .modal__label {
@@ -43,6 +43,13 @@
   width: 100%;
 }
 
+.modal__submit {
+  width: 124px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+
 .modal__form {
   display: flex;
   flex-direction: column;
@@ -54,6 +61,8 @@
   margin-top: 8px;
   width: 100%;
   box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid;
 }
 
 .modal__radio-buttons {

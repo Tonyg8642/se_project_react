@@ -29,6 +29,7 @@ function App() {
   };
 
   const handleCardClick = (card) => {
+    console.log(132131)
     setActiveModal("preview");
     setSelectedCard(card);
   };
@@ -59,7 +60,7 @@ function App() {
       <ModalWithForm
         title="New garment"
         buttonText="Add garment"
-        activeModal={activeModal}
+        isOpen={activeModal==='add-garment'}
         onClose={closeActiveModal}
       >
         <label htmlFor="name" className="modal__label">

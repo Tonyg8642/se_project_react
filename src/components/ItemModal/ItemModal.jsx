@@ -1,16 +1,16 @@
 import "./ItemModal.css";
 
 function ItemModal({ activeModal, onClose, card }) {
-  console.log(card);
+  console.log("==== CARD ====");
   // Return must be inside the function body
   return (
-    <div
-      className={`modal ${activeModal === "preview" ? "modal__opened" : ""}`}
-    >
+    <div className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}>
       <div className="modal__content modal__content_type_image">
-        <button onClick={onClose} type="button" className="modal__close">
-          Close
-        </button>
+        <button
+          onClick={onClose}
+          type="button"
+          className="modal__close modal__close_type_image"
+        ></button>
         {card && (
           <>
             <img
