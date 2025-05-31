@@ -2,6 +2,8 @@ import "./WeatherCard.css";
 import { weatherOptions, defaultWeatherOptions } from "../../utils/constants";
 
 function WeatherCard({ weatherData }) {
+  //console.log(weatherData)
+
   const filteredOptions = weatherOptions.filter((option) => {
     return (
       option.day === weatherData.isDay &&
@@ -12,9 +14,11 @@ function WeatherCard({ weatherData }) {
   let weatherOption;
   if (filteredOptions.length === 0) {
     weatherOption = defaultWeatherOptions[weatherData.isDay ? "day" : "night"];
+    //..alt=File.name(replace - with " ")
   } else {
     weatherOption = filteredOptions[0];
   }
+  console.log(weatherOption.url);
 
   //   const weatherOptionURL = filteredOptions[0]?.url;
   //   const weatherOptionCondition = filteredOptions[0]?.condition;
@@ -25,7 +29,7 @@ function WeatherCard({ weatherData }) {
       <p className="weather-card__temp">{weatherData.temp?.F} &deg; F</p>
       <img
         src={weatherOption?.url}
-        alt="card"
+        alt="Clear weather icon showing a sun and clear-sky."
         className="weather-card__image"
       />
     </section>
