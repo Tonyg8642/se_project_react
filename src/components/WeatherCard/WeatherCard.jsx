@@ -29,7 +29,7 @@ function WeatherCard({ weatherData }) {
       <p className="weather-card__temp">{weatherData.temp?.F} &deg; F</p>
       <img
         src={weatherOption?.url}
-        alt="Clear weather icon showing a sun and clear-sky."
+        alt="Image showing ${weather}"
         className="weather-card__image"
       />
     </section>
