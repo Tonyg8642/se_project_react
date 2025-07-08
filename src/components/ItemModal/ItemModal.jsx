@@ -1,10 +1,14 @@
 import "./ItemModal.css";
 
-function ItemModal({ activeModal, onClose, card }) {
+function ItemModal({ activeModal, onClose, card, onCardDelete }) {
+  // const handleDeleteClick = () => {
+  // onCardDelete();
+  // };
   console.log("==== CARD ====");
   // Return must be inside the function body
   return (
     <div className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}>
+      {/* Only use the modal_content_type_image style*/}
       <div className="modal__content modal__content_type_image">
         <button
           onClick={onClose}
@@ -19,7 +23,12 @@ function ItemModal({ activeModal, onClose, card }) {
               className="modal__image"
             />
             <div className="modal__footer">
-              <h2 className="modal__caption">{card.name}</h2>
+              <div className="modal__footer-row">
+                <h2 className="modal__caption">{card.name}</h2>
+                <button className="Modal__delete-button" onClick={onCardDelete}>
+                  Delete
+                </button>
+              </div>
               <p className="modal__weather">Weather: {card.weather}</p>
             </div>
           </>

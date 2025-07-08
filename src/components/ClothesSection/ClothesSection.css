@@ -1,0 +1,33 @@
+.clothes-section {
+  flex-grow: 1;
+}
+
+.clothes-section__items {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 323px);
+  gap: 20px;
+}
+
+.clothesSection__title {
+  display: flex;
+  gap: 20px;
+}
+
+.Clothes__items {
+  width: 94px;
+  height: 25px;
+  margin: 0;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.ClothesSection__add-new {
+  border: none;
+  background-color: transparent;
+  font-family: Cabinet Grotesk;
+  height: 25px;
+  font-weight: 700;
+  font-size: 20px;
+}

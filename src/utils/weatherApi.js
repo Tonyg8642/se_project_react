@@ -12,13 +12,16 @@ export const getWeather = async ({ latitude, longitude }, APIkey) => {
 export const filterWeatherData = (data) => {
   const result = {};
   result.city = data.name;
-  result.temp = { F: data.main.temp };
+  result.temp = {
+    F: Math.round (data.main.temp),
+    C: Math.round(((data.main.temp - 32) * 5) / 9),
+  };
   result.type = getWeatherType(result.temp.F);
   result.condition = data.weather[0].main.toLowerCase();
   result.isDay = isDay({
     sunrise: data.sys.sunrise,
     sunset: data.sys.sunset,
-    now: Date.now()
+    now: Date.now(),
   });
 
   return result;

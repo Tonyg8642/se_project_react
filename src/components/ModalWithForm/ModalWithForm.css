@@ -17,6 +17,7 @@
 
 .modal__label {
   margin-bottom: 28px;
+  margin-top: 8px;
 }
 
 .modal__title {
@@ -32,15 +33,56 @@
   position: absolute;
   top: 20px;
   right: 28px;
+  border: none;
+  background-color: transparent;
+  background: #0000004d;
+  background-image: url("../../assets/closeButton.svg");
+  width: 20px;
+  height: 20px;
+}
+
+.modal__close_type_image {
+  top: 26px;
+  right: 26px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../../assets/images.svg");
+  cursor: pointer;
+  position: absolute;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.modal__footer-row {
+  display: flex;
+  justify-content: space-between;
 }
 
 .modal__content {
   background-color: #fff;
   position: relative;
-  padding: 28px 28px 36px;
   max-width: 496px;
   box-sizing: border-box;
   width: 100%;
+  border-radius: 10px;
+  padding: 28px 28px 36px;
+}
+
+.modal__content_type_delete {
+  width: 670px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.modal__content_type_image {
+  padding: 0;
+  border-radius: 16px;
 }
 
 .modal__submit {
@@ -48,7 +90,6 @@
   height: 36px;
   border-radius: 8px;
 }
-
 
 .modal__form {
   display: flex;
@@ -70,4 +111,12 @@
   padding: 0;
   display: flex;
   flex-direction: column;
+  width: 173px;
+}
+
+.modal__legend {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 16px;
 }

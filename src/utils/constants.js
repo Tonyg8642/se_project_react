@@ -8,7 +8,7 @@ export const weatherOptions = [
   {
     day: true,
     condition: "clouds",
-    url: new URL("../assets/day/cloudy.png", import.meta.url).href,
+    url: new URL("../assets/day/cloudy.svg", import.meta.url).href,
   },
 
   {

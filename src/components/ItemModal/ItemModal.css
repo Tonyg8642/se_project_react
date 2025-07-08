@@ -1,29 +1,10 @@
-.modal__content_type_image {
-  padding: 0;
-}
-
-.modal__close_type_image {
-  top: 26px;
-  right: 26px;
-  border: none;
-  background-color: transparent;
-  background-image: url("../../assets/images.svg");
-  cursor: pointer;
-  position: absolute;
-  padding: 0;
-  width: 20px;
-  height: 20px;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
 .modal__image {
   width: 100%;
 }
 
 .modal__caption {
   margin: 0;
-  font-family: 'Cabinet Grotesk';
+  font-family: "Cabinet Grotesk";
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
@@ -31,7 +12,7 @@
 
 .modal__weather {
   margin: 12px 0 0 0;
-  font-family: 'Cabinet Grotesk';
+  font-family: "Cabinet Grotesk";
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
@@ -39,4 +20,18 @@
 
 .modal__footer {
   padding: 20px 32px 32px 32px;
+}
+
+.Modal__delete-button {
+  width: 101px;
+  height: 24px;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 20px;
+  color: #ff4d00;
+  display: flex;
+  padding: 0;
+  border: none;
+  gap: 20px;
+  background-color: transparent;
 }

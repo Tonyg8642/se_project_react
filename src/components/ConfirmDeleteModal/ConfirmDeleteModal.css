@@ -1,0 +1,31 @@
+.confirm__message {
+  width: 367px;
+  height: 48px;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  text-align: center;
+}
+
+.confirm__delete {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  color: #ff4d00;
+  background-color: transparent;
+  border: none;
+  margin-top: 40px;
+}
+
+.confirm__cancel {
+  height: 24px;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  margin-top: 24px;
+  border: none;
+  background-color: transparent;
+}
