@@ -9,9 +9,8 @@ import { getWeather, filterWeatherData } from "../utils/weatherApi";
 import Footer from "./Footer/footer";
 import CurrentTemperatureUnitContext from "../current/currentTemperatureContext";
 import AddItemModal from "./AddItemModal/AddItemModal";
-import { defaultClothingItems } from "../utils/constants";
 import Profile from "./Profile/Profile";
-import { addItem, deleteItem, getItems } from "./src/utlis/api";
+import { addItem, deleteItem, getItems } from "../utlis/api";
 import ConfirmDeleteModal from "./ConfirmDeleteModal/ConfirmDeleteModal";
 
 function App() {
