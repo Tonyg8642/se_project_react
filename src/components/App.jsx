@@ -7,10 +7,10 @@ import Main from "./Main/Main";
 import ItemModal from "./ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../utils/weatherApi";
 import Footer from "./Footer/footer";
-import CurrentTemperatureUnitContext from "../current/currentTemperatureContext";
+import CurrentTemperatureUnitContext from "../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "./AddItemModal/AddItemModal";
 import Profile from "./Profile/Profile";
-import { addItem, deleteItem, getItems } from "../utlis/api";
+import { addItem, deleteItem, getItems } from "../utils/api";
 import ConfirmDeleteModal from "./ConfirmDeleteModal/ConfirmDeleteModal";
 
 function App() {
@@ -70,12 +70,11 @@ function App() {
     setActiveModal("confirm-delete");
   };
 
-
   const handAddItemModalSubmit = ({ name, imageUrl, weather }) => {
     const newId = Math.max(...clothingItems.map((item) => item._id)) + 1;
     //updateClothingItemsArray
 
-    addItem({ name, imageUrl, weather, id: newId })
+    addItem({ name, imageUrl, weather, _id: newId })
       .then((item) => {
         console.log(item);
         //close the modal
@@ -86,6 +85,12 @@ function App() {
         closeActiveModal();
       })
       .catch(console.error);
+
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve("Added item successfully");
+    //   }, 1000);
+    // });
   };
 
   useEffect(() => {
