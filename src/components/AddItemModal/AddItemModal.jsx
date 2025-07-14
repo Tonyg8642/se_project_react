@@ -11,6 +11,7 @@ function AddItemModal({ onClose, isOpen, onAddItemModalSubmit }) {
   };
 
   const handleImageUrlChange = (e) => {
+    console.log(e)
     setImageUrl(e.target.value);
   };
 

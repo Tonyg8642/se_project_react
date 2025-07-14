@@ -1,8 +1,8 @@
-const baseUrl = "http://localhost:3001";
-
-function handleResponse(res) {
+export function handleResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
+
+const baseUrl = "http://localhost:3001";
 
 function getItems() {
   return fetch(`${baseUrl}/items`).then(handleResponse);

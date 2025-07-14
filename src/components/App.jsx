@@ -51,15 +51,17 @@ function App() {
 
   const handleCardDelete = () => {
     // console.log(selectedCard);
-    deleteItem(selectedCard._id).then((res) => {
-      // remove card from your view/card list
-      const updatedItems = clothingItems.filter(
-        (item) => item._id !== selectedCard._id
-      );
-      setClothingItems(updatedItems);
-      // close modal
-      closeActiveModal();
-    });
+    deleteItem(selectedCard._id)
+      .then((res) => {
+        // remove card from your view/card list
+        const updatedItems = clothingItems.filter(
+          (item) => item._id !== selectedCard._id
+        );
+        setClothingItems(updatedItems);
+        // close modal
+        closeActiveModal();
+      })
+      .catch(console.error);
   };
 
   const closeActiveModal = () => {
