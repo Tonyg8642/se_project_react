@@ -1,23 +1,27 @@
-import "./ClothesSection.css";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import ItemCard from "../ItemCard/ItemCard";
 
-function ClothesSection({ onCardClick, clothingItems, onOpen }) {
+function ClothesSection({ clothingItems, onCardClick }) {
+  const currentUser = useContext(CurrentUserContext); // ✅ Access current user info
+
+  // ✅ Filter only the cards that belong to the logged-in user
+  const userCards = clothingItems.filter(
+    (item) => item.owner === currentUser?._id
+  );
+
   return (
-    <div className="clothes-section">
-      <div className="clothesSection__title">
-        <p className="Clothes__items">Your items</p>
-        <button className="ClothesSection__add-new" onClick={onOpen}>
-          + Add New
-        </button>
+    <section className="clothes-section">
+      {/* Section title */}
+      <h2 className="clothes-section__title">My Clothes</h2>
+
+      {/* ✅ Display only the filtered cards */}
+      <div className="clothes-section__cards">
+        {userCards.map((card) => (
+          <ItemCard key={card._id} card={card} onCardClick={onCardClick} />
+        ))}
       </div>
-      <ul className="clothes-section__items">
-        {clothingItems.map((item) => {
-          return (
-            <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
-          );
-        })}
-      </ul>
-    </div>
+    </section>
   );
 }
 

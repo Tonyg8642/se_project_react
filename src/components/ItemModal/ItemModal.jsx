@@ -1,41 +1,39 @@
-import "./ItemModal.css";
+import { useContext } from "react";
 
-function ItemModal({ activeModal, onClose, card, onCardDelete }) {
-  // const handleDeleteClick = () => {
-  // onCardDelete();
-  // };
-  console.log("==== CARD ====");
-  // Return must be inside the function body
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+
+import "./ItemModal.css";
+// Import the card’s CSS file for styling.
+
+function ItemModal({ activeModal, card, onClose, onCardDelete, isOpen }) {
+  const currentUser = useContext(CurrentUserContext);
+
+ // const isLiked = card.likes.some((id) => id === currentUser?._id);
+
+  // const itemLikeButtonClassName = `card__like-button ${
+  //   isLiked ? "card__like-button_active" : ""
+  // }`;
+
+  // function handleLike() {
+  //   onCardLike({ _id: item._id, isLiked });
+  // }
+
+  // function handleCardClick() {
+  //   onCardClick(item);
+  // }
+
   return (
-    <div className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}>
-      {/* Only use the modal_content_type_image style*/}
-      <div className="modal__content modal__content_type_image">
+    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
+      <div className="modal__content">
         <button
           onClick={onClose}
           type="button"
-          className="modal__close modal__close_type_image"
+          className="modal__close"
         ></button>
-        {card && (
-          <>
-            <img
-              src={card.imageUrl || card.link}
-              alt={card.name}
-              className="modal__image"
-            />
-            <div className="modal__footer">
-              <div className="modal__footer-row">
-                <h2 className="modal__caption">{card.name}</h2>
-                <button className="Modal__delete-button" onClick={onCardDelete}>
-                  Delete
-                </button>
-              </div>
-              <p className="modal__weather">Weather: {card.weather}</p>
-            </div>
-          </>
-        )}
       </div>
     </div>
   );
 }
 
 export default ItemModal;
+// Export the component so it can be used in Main.jsx.
