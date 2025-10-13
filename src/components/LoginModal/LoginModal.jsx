@@ -1,7 +1,7 @@
 // Import the useState Hook from React
 import { useState } from "react";
 // Import the reusable modal wrapper component
-import ModalWithForm from "./ModalWithForm/ModalWithForm";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 // Define the LoginModal component
 function LoginModal({ isOpen, onClose, onLogin }) {
