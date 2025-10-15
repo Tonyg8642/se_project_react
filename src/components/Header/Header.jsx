@@ -1,3 +1,4 @@
+// 📁 src/components/Header/Header.jsx
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import "./Header.css";
@@ -6,15 +7,21 @@ import logo from "../../assets/logo.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Header({ handleAddClick, weatherData = {}, isLoggedIn, onLoginClick }) {
-  const currentUser = useContext(CurrentUserContext); // Access user info from context
+function Header({
+  handleAddClick,
+  weatherData = {},
+  isLoggedIn,
+  onLoginClick,
+  onRegisterClick, // ✅ Added this new prop for Register Modal
+}) {
+  const currentUser = useContext(CurrentUserContext); // Access current user info
 
-  // If no avatar, show first letter of name
+  // If no avatar, use first letter of user’s name as placeholder
   const placeholder = currentUser?.name
     ? currentUser.name.charAt(0).toUpperCase()
     : "?";
 
-  // Show today’s date and city
+  // Display today's date and city from weather API
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -67,7 +74,9 @@ function Header({ handleAddClick, weatherData = {}, isLoggedIn, onLoginClick }) 
             <button onClick={onLoginClick} className="header__login">
               Login
             </button>
-            <button className="header__register">Register</button>
+            <button onClick={onRegisterClick} className="header__register">
+              Register
+            </button>
           </div>
         )}
       </nav>

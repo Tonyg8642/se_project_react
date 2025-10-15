@@ -1,10 +1,11 @@
+// 📁 src/components/RegisterModal/RegisterModal.jsx
 
-import { useState } from "react"; 
-import "./RegisterModal.css"; 
+import { useState } from "react";
+import "./RegisterModal.css";
 
 function RegisterModal({ isOpen, onClose, onRegister }) {
   // ---------- STATE VARIABLES ----------
-  // These store user input from each form field
+  // Controlled inputs for each form field
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
   const [email, setEmail] = useState("");
@@ -12,69 +13,86 @@ function RegisterModal({ isOpen, onClose, onRegister }) {
 
   // ---------- HANDLE FORM SUBMISSION ----------
   function handleSubmit(e) {
-    e.preventDefault(); // Prevents page reload on form submission
-    onRegister({ name, avatar, email, password }); // Sends user data to parent (App)
-    // Reset input fields after submission
+    e.preventDefault(); // Prevents page reload
+    onRegister({ name, avatar, email, password }); // Sends data up to App.jsx
+
+    // ✅ Optional: Clear the form after successful submission
     setName("");
     setAvatar("");
     setEmail("");
     setPassword("");
   }
 
-  // ---------- CONDITIONAL RENDERING ----------
-  // If modal is not open, don't render anything
+  // ---------- CONDITIONAL RENDER ----------
+  // Only render modal when `isOpen` is true
   if (!isOpen) return null;
 
-  // ---------- JSX STRUCTURE ----------
+  // ---------- JSX ----------
   return (
     <div className="modal">
-      <form className="modal__form" onSubmit={handleSubmit}>
-        <h2 className="modal__title">Register</h2>
+      {/* Background overlay (optional for dimming effect) */}
+      <div className="modal__overlay" onClick={onClose}></div>
 
-        {/* Name Input */}
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-
-        {/* Avatar Input */}
-        <input
-          type="url"
-          placeholder="Avatar URL"
-          value={avatar}
-          onChange={(e) => setAvatar(e.target.value)}
-          required
-        />
-
-        {/* Email Input */}
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-
-        {/* Password Input */}
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-
-        {/* Buttons */}
-        <button type="submit" className="modal__submit-button">
-          Sign Up
+      {/* Modal content container */}
+      <div className="modal__content">
+        <button
+          type="button"
+          className="modal__close"
+          onClick={onClose}
+          aria-label="Close"
+        >
+          ×
         </button>
-        <button type="button" className="modal__close-button" onClick={onClose}>
-          Close
-        </button>
-      </form>
+
+        <form className="modal__form" onSubmit={handleSubmit}>
+          <h2 className="modal__title">Register</h2>
+
+          {/* Name Input */}
+          <input
+            type="text"
+            className="modal__input"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+
+          {/* Avatar URL Input */}
+          <input
+            type="url"
+            className="modal__input"
+            placeholder="Avatar URL"
+            value={avatar}
+            onChange={(e) => setAvatar(e.target.value)}
+            required
+          />
+
+          {/* Email Input */}
+          <input
+            type="email"
+            className="modal__input"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+
+          {/* Password Input */}
+          <input
+            type="password"
+            className="modal__input"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+
+          {/* Submit Button */}
+          <button type="submit" className="modal__submit-button">
+            Sign Up
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

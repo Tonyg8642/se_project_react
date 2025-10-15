@@ -14,13 +14,14 @@ import {
   changeLikeStatus,
   editProfile,
 } from "../../utils/api";
-import { login, checkToken } from "../../utils/auth";
+import { login, checkToken, register } from "../../utils/auth"; // ✅ Added `register`
 
 // ---------- Components ----------
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import LoginModal from "../LoginModal/LoginModal";
+import RegisterModal from "../RegisterModal/RegisterModal"; // ✅ New import
 import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
@@ -53,9 +54,18 @@ function App() {
     setCurrentTemperatureUnit((prev) => (prev === "F" ? "C" : "F"));
   }
 
+  // ---------- RegisterModals ----------
+  function openRegisterModal() {
+    setActiveModal("register");
+  }
+
   // ---------- MODAL HANDLERS ----------
   function openLoginModal() {
     setActiveModal("login");
+  }
+
+  function openRegisterModal() {
+    setActiveModal("register"); // ✅ opens RegisterModal
   }
 
   function openEditProfileModal() {
@@ -80,6 +90,15 @@ function App() {
   }
 
   // ---------- AUTH ----------
+  function handleRegister({ name, avatar, email, password }) {
+    register({ name, avatar, email, password })
+      .then(() => {
+        closeActiveModal();
+        openLoginModal(); // ✅ automatically opens login modal next
+      })
+      .catch((err) => console.error("Registration failed:", err));
+  }
+
   function handleLogin({ email, password }) {
     login({ email, password })
       .then((data) => {
@@ -180,6 +199,7 @@ function App() {
                 isLoggedIn={isLoggedIn}
                 weatherData={weatherData}
                 onLoginClick={openLoginModal}
+                onRegisterClick={openRegisterModal} // ✅ added here
                 handleAddClick={handleAddClick}
                 onEditProfileClick={openEditProfileModal}
               />
@@ -223,6 +243,12 @@ function App() {
               isOpen={activeModal === "login"}
               onClose={closeActiveModal}
               onLogin={handleLogin}
+            />
+
+            <RegisterModal
+              isOpen={activeModal === "register"}
+              onClose={closeActiveModal}
+              onRegister={handleRegister}
             />
 
             <AddItemModal
