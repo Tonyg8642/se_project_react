@@ -1,22 +1,43 @@
+// 📁 src/components/ConfirmDeleteModal/ConfirmDeleteModal.jsx
+import React from "react";
 import "./ConfirmDeleteModal.css";
 
-function ConfirmDeleteModal({ onClose, isOpen, handleDelete }) {
+function ConfirmDeleteModal({ isOpen, onClose, onConfirm }) {
+  if (!isOpen) return null; // Don’t render unless the modal is open
+
   return (
-    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
-      <div className="modal__content modal__content_type_delete red-modal">
+    <div className="modal modal_opened">
+      {/* Overlay background */}
+      <div className="modal__overlay" onClick={onClose}></div>
+
+      {/* Modal content */}
+      <div className="modal__content modal__content_type_confirm">
         <button
-          onClick={onClose}
           type="button"
           className="modal__close"
+          onClick={onClose}
+          aria-label="Close"
         ></button>
-        <p className="confirm__message">
-          Are you sure you want to delete this item? This action is
-          irreversible.
-        </p>
-        <button className="confirm__delete" onClick={handleDelete}>
-          Yes, delete item
-        </button>
-        <button className="confirm__cancel">Cancel</button>
+
+        <h2 className="modal__title">Are you sure you want to delete this?</h2>
+
+        <div className="modal__buttons">
+          <button
+            type="button"
+            className="modal__confirm-button"
+            onClick={onConfirm}
+          >
+            Yes, delete
+          </button>
+
+          <button
+            type="button"
+            className="modal__cancel-button"
+            onClick={onClose}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );

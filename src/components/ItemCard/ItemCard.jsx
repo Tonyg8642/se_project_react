@@ -3,29 +3,36 @@ import { useContext } from "react";
 import "./ItemCard.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
-  // Access logged-in user's data from context
+function ItemCard({ item, onCardClick, onCardLike, onCardDelete, isLoggedIn }) {
+  // ---------- CONTEXT ----------
   const currentUser = useContext(CurrentUserContext);
 
-  // Check if this card is liked by the logged-in user
+  // ---------- CHECK IF ITEM IS LIKED ----------
   const isLiked = item.likes.some((id) => id === currentUser?._id);
 
-  // Apply a CSS class if the item is liked
+  // ---------- CHECK IF ITEM BELONGS TO USER ----------
+  const isOwn = item.owner === currentUser?._id;
+
+  // ---------- CLASSNAMES ----------
   const itemLikeButtonClassName = `card__like-button ${
     isLiked ? "card__like-button_liked" : ""
   }`;
 
-  // Handle clicking the like button
+  // ---------- HANDLERS ----------
   function handleLikeClick() {
-    if (!isLoggedIn) return; // do nothing if the user isn't logged in
-    onCardLike(item, isLiked); // tell parent (App) to toggle like
+    if (!isLoggedIn) return; // do nothing if not logged in
+    onCardLike(item, isLiked);
   }
 
-  // Handle clicking the image — opens item preview modal
   function handleCardClick() {
-    onCardClick(item);
+    onCardClick(item); // open preview modal
   }
 
+  function handleDeleteClick() {
+    onCardDelete(item); // 🟢 open confirm delete modal (Task 3)
+  }
+
+  // ---------- JSX ----------
   return (
     <li className="card">
       {/* Item name */}
@@ -35,16 +42,27 @@ function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
       <img
         onClick={handleCardClick}
         className="card__image"
-        src={item.link || item.imageUrl} // uses link or imageUrl
+        src={item.link || item.imageUrl}
         alt={`Clothing item: ${item.name}`}
       />
 
-      {/* Like button (only visible when logged in) */}
+      {/* ---------- DELETE BUTTON (Task 3) ---------- */}
+      {isOwn && (
+        <button
+          type="button"
+          className="card__delete-button"
+          onClick={handleDeleteClick}
+          aria-label="Delete item"
+        ></button>
+      )}
+
+      {/* ---------- LIKE BUTTON ---------- */}
       {isLoggedIn && (
         <button
           className={itemLikeButtonClassName}
           onClick={handleLikeClick}
           type="button"
+          aria-label="Like item"
         ></button>
       )}
     </li>

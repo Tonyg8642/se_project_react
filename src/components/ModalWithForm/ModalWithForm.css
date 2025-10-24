@@ -17,8 +17,10 @@
 }
 
 .modal__label {
-  margin-bottom: 28px;
   margin-top: 8px;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 16px;
 }
 
 .modal__title {
@@ -27,6 +29,31 @@
   font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
   font-weight: 700;
   line-height: 20px;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.modal__label-email {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.modal__label-password {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.modal__label-name {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.modal__label-avatarURL {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
   font-size: 16px;
 }
 
@@ -57,9 +84,20 @@
   background-size: contain;
 }
 
+.modal__button-SignUp {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.modal__button-orLogin {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 16px;
+}
+
 .modal__footer-row {
   display: flex;
-  justify-content: space-between;
 }
 
 .modal__content {
@@ -92,8 +130,7 @@
   border-radius: 8px;
   margin-top: 32px;
   border: none;
-  background: #0000004D;
-
+  background: #0000004d;
 }
 
 .modal__form {
@@ -110,6 +147,17 @@
   border: none;
   border-bottom: 1px solid;
   padding: 4px 0px;
+  margin-bottom: 24px;
+}
+
+.modal__input::placeholder {
+  color: #7a7a7a;
+}
+
+.modal__input:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: transparent;
 }
 
 .modal__radio-buttons {
@@ -117,7 +165,6 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-
 }
 
 .modal__legend {

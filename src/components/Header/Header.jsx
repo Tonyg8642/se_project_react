@@ -71,12 +71,13 @@ function Header({
           </>
         ) : (
           <div className="header__auth-buttons">
+              <button onClick={onRegisterClick} className="header__signUp">
+              Sign Up
+            </button>
             <button onClick={onLoginClick} className="header__login">
-              Login
+              Log In
             </button>
-            <button onClick={onRegisterClick} className="header__register">
-              Register
-            </button>
+          
           </div>
         )}
       </nav>

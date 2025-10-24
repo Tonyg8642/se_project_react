@@ -1,38 +1,59 @@
+/* ---------- IMAGE ---------- */
 .modal__image {
   width: 498px;
   height: 498px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
+/* ---------- CAPTION (item name) ---------- */
 .modal__caption {
   margin: 0;
-  font-family: "Cabinet Grotesk";
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
+  text-align: center;
+  margin-top: 16px;
 }
 
+/* ---------- WEATHER ---------- */
 .modal__weather {
   margin: 12px 0 0 0;
-  font-family: "Cabinet Grotesk";
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
+  text-align: center;
+  color: #333;
 }
 
+/* ---------- FOOTER SECTION ---------- */
 .modal__footer {
   padding: 20px 32px 32px 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.Modal__delete-button {
+/* ---------- DELETE BUTTON ---------- */
+.modal__delete-button {
   width: 101px;
   height: 24px;
-  font-family: Cabinet Grotesk;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-weight: 700;
   font-size: 20px;
   color: #ff4d00;
   display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0;
   border: none;
-  gap: 20px;
   background-color: transparent;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.modal__delete-button:hover {
+  opacity: 0.7;
 }

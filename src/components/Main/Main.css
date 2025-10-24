@@ -1,8 +1,15 @@
+.cards__text {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 20px;
+  height: 25px;
+}
+
 .cards__list {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    gap: 21px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  gap: 21px;
 }

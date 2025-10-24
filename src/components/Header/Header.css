@@ -9,6 +9,29 @@
   display: flex;
 }
 
+.header__auth-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.header__login {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  border: none;
+  height: 24px;
+}
+
+.header__signUp {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  border: none;
+  height: 25px;
+}
+
 .header__logo {
   margin-right: 24px;
   width: 89px;
@@ -50,6 +73,11 @@
   font-family: Cabinet Grotesk;
   font-weight: 700;
   font-size: 20px;
+}
+
+.header__avatar {
+  height: 48px;
+  width: 48px;
 }
 
 .header__link {
