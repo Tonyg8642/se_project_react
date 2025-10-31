@@ -1,4 +1,5 @@
-import { useContext } from "react"; // To access current user info
+// 📁 src/components/Profile/Profile.jsx
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import Sidebar from "../SideBar/SideBar";
@@ -8,39 +9,43 @@ import "./Profile.css";
 export default function Profile({
   onCardClick,
   clothingItems,
-  open,
-  onSignOut, // ✅ Get sign-out handler from App
+  onEditProfileClick, // ✅ to open EditProfileModal
+  onSignOut, // ✅ from App.jsx
 }) {
   const navigate = useNavigate();
-  const currentUser = useContext(CurrentUserContext); // ✅ Access current user data
+  const currentUser = useContext(CurrentUserContext);
 
-  // Filter to show only this user's items
+  // ✅ Filter to show only this user's cards
   const userClothingItems = clothingItems.filter(
     (item) => item.owner === currentUser._id
   );
 
-  // ✅ When the user clicks "Sign out"
+  // ✅ Handle sign-out
   function handleSignOut() {
-    onSignOut(); // Call the handler passed from App.jsx
-    navigate("/"); // Redirect back to home page
+    onSignOut();
+    navigate("/"); // redirect to home
   }
 
   return (
     <div className="profile">
-      {}
-      <Sidebar />
-
-      {}
-      <button className="profile__signout-button" onClick={handleSignOut}>
-        Sign out
-      </button>
-
-      {}
-      <ClothesSection
-        onCardClick={onCardClick}
-        clothingItems={userClothingItems}
-        onOpen={open}
+      {/* ---------- LEFT SIDEBAR ---------- */}
+      <Sidebar
+        name={currentUser.name}
+        avatar={currentUser.avatar}
+        onEditProfileClick={onEditProfileClick}
       />
+
+      {/* ---------- RIGHT SECTION ---------- */}
+      <div className="profile__content">
+        <button className="profile__signout-button" onClick={handleSignOut}>
+          Sign out
+        </button>
+
+        <ClothesSection
+          onCardClick={onCardClick}
+          clothingItems={userClothingItems}
+        />
+      </div>
     </div>
   );
 }

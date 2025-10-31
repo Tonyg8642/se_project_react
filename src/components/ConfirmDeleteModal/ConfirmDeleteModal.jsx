@@ -2,9 +2,7 @@
 import React from "react";
 import "./ConfirmDeleteModal.css";
 
-function ConfirmDeleteModal({ isOpen, onClose, onConfirm }) {
-  if (!isOpen) return null; // Don’t render unless the modal is open
-
+function ConfirmDeleteModal({ onClose, onConfirm }) {
   return (
     <div className="modal modal_opened">
       {/* Overlay background */}

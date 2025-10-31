@@ -79,3 +79,20 @@ Basically, all of these steps would send data from front end to back end.
 API call and updates the apperance correct.
 
 6. It has to do both, if it's liked then it should appear as a soild heart, otherwise, it should appear as the outline.
+
+2. For the trasition, refer to sprint 3.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+1. Implementing hover psuedo class for hover submit. 
+
+
+3. Look into use form hook. Use form hook is a costom that allows you to check the validation of the form. It will
+also handle form valibles as well
+
+4. If I can check the validation of the form, then I can implement the disable state for the submit button. 
+
+1. Use JavaScript to disable buttons, make it look disabled using css. Use a modified class.
+
+Test all forms once use form hook. It should enable or disable submit button and all the buttons should look the same according to figma.

@@ -3,68 +3,61 @@ import { useContext } from "react";
 import "./ItemCard.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function ItemCard({ item, onCardClick, onCardLike, onCardDelete, isLoggedIn }) {
-  // ---------- CONTEXT ----------
+function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
 
-  // ---------- CHECK IF ITEM IS LIKED ----------
+  // 🧠 Check if current user is the owner of this card
+  const isOwn =
+    (typeof item.owner === "string" ? item.owner : item.owner?._id) ===
+    currentUser?._id;
+
+  // 🧠 Check if current user already liked this item
   const isLiked = item.likes.some((id) => id === currentUser?._id);
 
-  // ---------- CHECK IF ITEM BELONGS TO USER ----------
-  const isOwn = item.owner === currentUser?._id;
-
-  // ---------- CLASSNAMES ----------
+  // 🧠 Build dynamic class for heart icon (outline vs solid)
   const itemLikeButtonClassName = `card__like-button ${
     isLiked ? "card__like-button_liked" : ""
   }`;
 
-  // ---------- HANDLERS ----------
+  // ❤️ Like/Unlike handler
   function handleLikeClick() {
     if (!isLoggedIn) return; // do nothing if not logged in
-    onCardLike(item, isLiked);
+    onCardLike(item, isLiked); // pass item + liked state to App.jsx
   }
 
-  function handleCardClick() {
-    onCardClick(item); // open preview modal
-  }
-
-  function handleDeleteClick() {
-    onCardDelete(item); // 🟢 open confirm delete modal (Task 3)
-  }
-
-  // ---------- JSX ----------
   return (
     <li className="card">
-      {/* Item name */}
-      <h2 className="card__name">{item.name}</h2>
-
-      {/* Item image */}
+      {/* Card image */}
       <img
-        onClick={handleCardClick}
-        className="card__image"
         src={item.link || item.imageUrl}
-        alt={`Clothing item: ${item.name}`}
+        alt={item.name}
+        className="card__image"
+        onClick={() => onCardClick(item)} // open modal on click
       />
 
-      {/* ---------- DELETE BUTTON (Task 3) ---------- */}
-      {isOwn && (
+      {/* Buttons container (top-right) */}
+      <div className="card__container">
+        {/* ❤️ Like Button */}
         <button
           type="button"
-          className="card__delete-button"
-          onClick={handleDeleteClick}
-          aria-label="Delete item"
-        ></button>
-      )}
-
-      {/* ---------- LIKE BUTTON ---------- */}
-      {isLoggedIn && (
-        <button
           className={itemLikeButtonClassName}
           onClick={handleLikeClick}
-          type="button"
           aria-label="Like item"
         ></button>
-      )}
+
+        {/* 🗑️ Optional delete button if user owns the card */}
+        {isOwn && (
+          <button
+            type="button"
+            className="card__delete-button"
+            aria-label="Delete item"
+            onClick={() => onCardClick(item)} // opens modal (then confirm delete)
+          ></button>
+        )}
+      </div>
+
+      {/* Item name overlay */}
+      <h2 className="card__name">{item.name}</h2>
     </li>
   );
 }

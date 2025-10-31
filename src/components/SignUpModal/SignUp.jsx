@@ -1,80 +1,131 @@
 import { useState } from "react";
 import "./SignUp.css";
 
-function SignUpModal({ onClose, onSignUp }) {
-  // ---------- STATE VARIABLES ----------
+function SignUpModal({ onClose, onSignUp, onLoginClick }) {
+  // ---------- STATE ----------
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isError, setIsError] = useState(false); // ✅ new: error state
 
-  // ---------- HANDLE SUBMIT ----------
+  // ---------- VALIDATION HANDLER ----------
+  function handleAvatarBlur() {
+    // Basic URL validation (checks that it starts with http or https)
+    if (!avatar.startsWith("http")) {
+      setIsError(true);
+    } else {
+      setIsError(false);
+    }
+  }
+
+  // ---------- FORM SUBMIT ----------
   function handleSubmit(e) {
     e.preventDefault();
-    if (onSignUp) {
-      onSignUp({ name, avatar, email, password });
+
+    // Check avatar validity before submitting
+    if (!avatar.startsWith("http")) {
+      setIsError(true);
+      return; // stop submission if invalid
     }
+
+    setIsError(false);
+    onSignUp({ name, avatar, email, password });
+
+    // Optional: clear fields after submission
+    setName("");
+    setAvatar("");
+    setEmail("");
+    setPassword("");
   }
 
   // ---------- JSX ----------
   return (
     <div className="modal modal_opened">
+      {/* Background overlay */}
       <div className="modal__overlay" onClick={onClose}></div>
+
+      {/* Modal container */}
       <div className="modal__content">
         <button
           type="button"
           className="modal__close"
           onClick={onClose}
+          aria-label="Close"
         ></button>
-        <h2 className="modal__title">Sign Up</h2>
+
         <form className="modal__form" onSubmit={handleSubmit}>
-          <label className="modal__label">
-            Name*
-            <input
-              type="text"
-              className="modal__input"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </label>
+          <h2 className="modal__title">Sign Up</h2>
 
-          <label className="modal__label">
-            Avatar URL*
-            <input
-              type="url"
-              className="modal__input"
-              value={avatar}
-              onChange={(e) => setAvatar(e.target.value)}
-              required
-            />
-          </label>
-
-          <label className="modal__label">
+          {/* Email */}
+          <label className="modal__label-email" htmlFor="email">
             Email*
-            <input
-              type="email"
-              className="modal__input"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
           </label>
+          <input
+            id="email"
+            type="email"
+            className="modal__input"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-          <label className="modal__label">
+          {/* Password */}
+          <label className="modal__label-password" htmlFor="password">
             Password*
-            <input
-              type="password"
-              className="modal__input"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
           </label>
+          <input
+            id="password"
+            type="password"
+            className="modal__input"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
 
-          <button type="submit" className="modal__submit">
-            Sign Up
-          </button>
+          {/* Name */}
+          <label className="modal__label-name" htmlFor="name">
+            Name*
+          </label>
+          <input
+            id="name"
+            type="name"
+            className="modal__input"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          {/* ----- Avatar URL Input ----- */}
+          <label className="modal__label-avatarURL" htmlFor="avatar">
+            Avatar URL*
+          </label>
+          <input
+            id="avatar"
+            type="url"
+            className="modal__input"
+            placeholder="Avatar URL"
+            required
+            value={avatar}
+            onChange={(e) => setAvatar(e.target.value)}
+          />
+
+          {/* Footer buttons */}
+          <div className="modal__footer-row">
+            <button type="submit" className="modal__button-SignUp">
+              Sign Up
+            </button>
+
+            <button
+              type="button"
+              className="modal__button-orLogin"
+              onClick={onLoginClick}
+            >
+              or Log In
+            </button>
+          </div>
         </form>
       </div>
     </div>
