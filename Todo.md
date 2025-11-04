@@ -104,3 +104,8 @@ First, make sure delete modal is centered.
 make sure that the profile route is protected.
 
 Make sure that the login or sign in button are working.
+
+------------------------------------------------------------------------------------------------------------------------------
+
+1. Make the profile page match the figma in terms of the layout and the cards and the side bar. All of the buttons and the add buttons
+2. 

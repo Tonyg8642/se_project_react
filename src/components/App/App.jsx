@@ -179,7 +179,7 @@ function App() {
     setSelectedCard(card);
     setActiveModal("preview");
   }
-
+ console.log(activeModal)
   // ---------- RENDER ----------
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -189,7 +189,7 @@ function App() {
             weatherData={weatherData}
             onAddItem={handleAddItemClick}
             onLoginClick={handleLoginClick}
-            onSignUpClick={handleSignUpClick}
+            onRegisterClick={handleSignUpClick}
             isLoggedIn={isLoggedIn}
           />
 

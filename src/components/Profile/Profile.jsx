@@ -12,6 +12,7 @@ export default function Profile({
   onEditProfileClick,
   onSignOut,
   onAddClick, // ✅ new prop to open AddItemModal
+  isLoggedIn
 }) {
   const navigate = useNavigate();
   const currentUser = useContext(CurrentUserContext);
