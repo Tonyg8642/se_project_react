@@ -1,7 +1,8 @@
+// 📁 src/components/ClothesSection/ClothesSection.jsx
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 
-function ClothesSection({ onCardClick, clothingItems, onOpen }) {
+function ClothesSection({ onCardClick, clothingItems, onOpen, onCardLike, isLoggedIn }) {
   return (
     <div className="clothes-section">
       <div className="clothesSection__title">
@@ -10,12 +11,17 @@ function ClothesSection({ onCardClick, clothingItems, onOpen }) {
           + Add New
         </button>
       </div>
+
       <ul className="clothes-section__items">
-        {clothingItems.map((item) => {
-          return (
-            <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
-          );
-        })}
+        {clothingItems.map((item) => (
+          <ItemCard
+            key={item._id}
+            item={item}
+            onCardClick={onCardClick}
+            onCardLike={onCardLike}   // ✅ now included
+            isLoggedIn={isLoggedIn}   // ✅ now included
+          />
+        ))}
       </ul>
     </div>
   );

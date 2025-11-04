@@ -9,21 +9,16 @@ import "./Profile.css";
 export default function Profile({
   onCardClick,
   clothingItems,
-  onEditProfileClick, // ✅ to open EditProfileModal
-  onSignOut, // ✅ from App.jsx
+  onEditProfileClick,
+  onSignOut,
+  onAddClick, // ✅ new prop to open AddItemModal
 }) {
   const navigate = useNavigate();
   const currentUser = useContext(CurrentUserContext);
 
-  // ✅ Filter to show only this user's cards
-  const userClothingItems = clothingItems.filter(
-    (item) => item.owner === currentUser._id
-  );
-
-  // ✅ Handle sign-out
   function handleSignOut() {
     onSignOut();
-    navigate("/"); // redirect to home
+    navigate("/"); // redirect to homepage
   }
 
   return (
@@ -41,9 +36,13 @@ export default function Profile({
           Sign out
         </button>
 
+        {/* ✅ Pass onOpen handler to ClothesSection */}
         <ClothesSection
           onCardClick={onCardClick}
-          clothingItems={userClothingItems}
+          clothingItems={clothingItems}
+          onOpen={onAddClick}
+          onCardLike={onCardClick}
+          isLoggedIn={isLoggedIn}
         />
       </div>
     </div>

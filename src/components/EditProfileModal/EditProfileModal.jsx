@@ -27,7 +27,7 @@ function EditProfileModal({ isOpen, onClose, onUpdateUser }) {
 
   
   return (
-    <div className={`modal ${isOpen ? "modal_open" : ""}`}>
+    <div className={`modal ${isOpen ? "modal__open" : ""}`}>
       {}
       <form className="modal__form" onSubmit={handleSubmit}>
         <h2 className="modal__title">Edit Profile</h2>

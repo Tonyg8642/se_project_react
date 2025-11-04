@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./SignUp.css";
+import "./SignUpModal.css";
 
 function SignUpModal({ onClose, onSignUp, onLoginClick }) {
   // ---------- STATE ----------
@@ -91,14 +91,15 @@ function SignUpModal({ onClose, onSignUp, onLoginClick }) {
           </label>
           <input
             id="name"
-            type="name"
+            type="text"
             className="modal__input"
             placeholder="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
-          {/* ----- Avatar URL Input ----- */}
+
+          {/* Avatar URL */}
           <label className="modal__label-avatarURL" htmlFor="avatar">
             Avatar URL*
           </label>
@@ -110,7 +111,15 @@ function SignUpModal({ onClose, onSignUp, onLoginClick }) {
             required
             value={avatar}
             onChange={(e) => setAvatar(e.target.value)}
+            onBlur={handleAvatarBlur}
           />
+
+          {/* Error message (optional) */}
+          {isError && (
+            <span className="modal__error-text">
+              Please enter a valid image URL starting with http.
+            </span>
+          )}
 
           {/* Footer buttons */}
           <div className="modal__footer-row">
@@ -121,7 +130,7 @@ function SignUpModal({ onClose, onSignUp, onLoginClick }) {
             <button
               type="button"
               className="modal__button-orLogin"
-              onClick={onLoginClick}
+              onClick={() => onLoginClick?.()} // ✅ Safe optional chaining
             >
               or Log In
             </button>
