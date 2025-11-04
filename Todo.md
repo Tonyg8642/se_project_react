@@ -96,3 +96,11 @@ also handle form valibles as well
 1. Use JavaScript to disable buttons, make it look disabled using css. Use a modified class.
 
 Test all forms once use form hook. It should enable or disable submit button and all the buttons should look the same according to figma.
+
+
+
+First, make sure delete modal is centered.
+
+make sure that the profile route is protected.
+
+Make sure that the login or sign in button are working.

@@ -1,38 +1,31 @@
-// 📁 src/components/ConfirmDeleteModal/ConfirmDeleteModal.jsx
 import React from "react";
 import "./ConfirmDeleteModal.css";
 
 function ConfirmDeleteModal({ onClose, onConfirm }) {
   return (
-    <div className="modal modal_opened">
-      {/* Overlay background */}
-      <div className="modal__overlay" onClick={onClose}></div>
-
-      {/* Modal content */}
-      <div className="modal__content modal__content_type_confirm">
+    <div className="confirm">
+      {/* Confirm box container */}
+      <div className="confirm__container">
+        {/* Close (X) button */}
         <button
           type="button"
-          className="modal__close"
+          className="confirm__close"
           onClick={onClose}
           aria-label="Close"
         ></button>
 
-        <h2 className="modal__title">Are you sure you want to delete this?</h2>
+        {/* Title */}
+        <h2 className="confirm__message">
+          Are you sure you want to delete this?
+        </h2>
 
-        <div className="modal__buttons">
-          <button
-            type="button"
-            className="modal__confirm-button"
-            onClick={onConfirm}
-          >
+        {/* Action buttons */}
+        <div className="confirm__buttons">
+          <button type="button" className="confirm__delete" onClick={onConfirm}>
             Yes, delete
           </button>
 
-          <button
-            type="button"
-            className="modal__cancel-button"
-            onClick={onClose}
-          >
+          <button type="button" className="confirm__cancel" onClick={onClose}>
             Cancel
           </button>
         </div>

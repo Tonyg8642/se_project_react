@@ -1,4 +1,3 @@
-// 📁 src/components/App/App.jsx
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -94,7 +93,7 @@ function App() {
       .then((userData) => {
         setCurrentUser(userData);
         setIsLoggedIn(true);
-        setActiveModal("");
+        setActiveModal(""); // ✅ close modal after signup
       })
       .catch((err) => console.error("Sign-up error:", err));
   }
@@ -108,15 +107,16 @@ function App() {
       .then((userData) => {
         setCurrentUser(userData);
         setIsLoggedIn(true);
-        setActiveModal("");
+        setActiveModal(""); // ✅ close modal after login
       })
       .catch((err) => console.error("Login error:", err));
   }
 
   function handleSignOut() {
-    removeToken();
-    setIsLoggedIn(false);
-    setCurrentUser({});
+    removeToken();          // removes JWT token
+    setIsLoggedIn(false);   // resets logged-in state
+    setCurrentUser({});     // clears user context
+    setActiveModal("");     // ✅ closes any open modal
   }
 
   // ---------- ADD ITEM ----------

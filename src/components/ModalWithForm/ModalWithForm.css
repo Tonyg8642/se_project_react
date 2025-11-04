@@ -108,6 +108,12 @@
   width: 100%;
   border-radius: 10px;
   padding: 28px 28px 36px;
+
+}
+
+.modal__content_type_confirm {
+  display: flex;
+  flex-direction: column;
 }
 
 .modal__content_type_delete {
@@ -150,14 +156,14 @@
   margin-bottom: 24px;
 }
 
+
 .modal__input::placeholder {
   color: #7a7a7a;
 }
 
-.modal__input:focus {
-  outline: none;
-  box-shadow: none;
-  border-color: transparent;
+.modal__input:active {
+  border: none;
+  border-bottom: 1px solid;
 }
 
 .modal__radio-buttons {

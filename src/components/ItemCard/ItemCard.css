@@ -14,7 +14,6 @@
 .card__container {
   position: absolute;
   top: 15px;
-  right: 15px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -33,21 +32,18 @@
 
 /* Item name at the bottom center (optional if using text overlay) */
 .card__name {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  color: #fff;
+  color: rgba(0, 0, 0, 0.6);
   font-size: 16px;
-  font-weight: 500;
-  background-color: rgba(0, 0, 0, 0.4);
+  font-weight: 700;
+  background-color: white;
   padding: 4px 8px;
   border-radius: 8px;
 }
 
 /* ❤️ Like Button (outline by default) */
 .card__like-button {
-  background: url("../../assets/heart-outline.svg") center/contain no-repeat;
-  width: 20px;
+  background: url("../../assets/heartButton.svg") center/contain no-repeat;
+  width: 18px;
   height: 18px;
   border: none;
   background-color: transparent;
@@ -57,12 +53,13 @@
 
 /* Solid heart when liked */
 .card__like-button_liked {
-  background: url("../../assets/heart-solid.svg") center/contain no-repeat;
+  background: url("../../assets/likeButton.svg") center/contain no-repeat;
 }
 
 /* Hover effect */
 .card__like-button:hover {
   opacity: 0.6;
+  cursor: pointer;
 }
 
 /* 🗑️ Optional delete/trash button (for owned items only) */
@@ -79,4 +76,3 @@
 .card__delete-button:hover {
   opacity: 0.6;
 }
-
