@@ -1,18 +1,29 @@
 .clothes-section {
-  flex-grow: 1;
+  padding: 0;
+  display: flex;
+  margin: 0;
+  flex-direction: column;
 }
 
 .clothes-section__items {
+  margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 323px);
+  justify-content: center;
+  box-sizing: border-box;
+  justify-items: center;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
 .clothesSection__title {
   display: flex;
   gap: 20px;
+  padding-left: 50px;
+  margin-bottom: 20px;
 }
+
 
 .Clothes__items {
   width: 94px;
@@ -31,3 +42,18 @@
   font-weight: 700;
   font-size: 20px;
 }
+
+/* @media screen and (max-width: 1365px) {
+  .clothes-section__list {
+    grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+    grid-gap: 16px;
+    grid-auto-rows: 228px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .clothes-section {
+    align-items: center;
+    width: 100%;
+  }
+} */

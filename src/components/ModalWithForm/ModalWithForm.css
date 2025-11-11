@@ -88,12 +88,14 @@
   font-family: Cabinet Grotesk;
   font-weight: 700;
   font-size: 16px;
+  border: none;
 }
 
 .modal__button-orLogin {
   font-family: Cabinet Grotesk;
   font-weight: 700;
   font-size: 16px;
+  border: none;
 }
 
 .modal__footer-row {

@@ -129,7 +129,8 @@ function App() {
     setIsLoading(true);
     addItem(itemData)
       .then((newItem) => {
-        setClothingItems([newItem, ...clothingItems]);
+        // ✅ FIXED: Use newItem.data to correctly access the item from server response
+        setClothingItems((prevItems) => [newItem.data, ...prevItems]);
         handleCloseModal(); // ✅ close only after success
       })
       .catch(console.error)
@@ -143,6 +144,7 @@ function App() {
         setCurrentUser(updatedUser);
         handleCloseModal(); // ✅ close after success
       })
+      
       .catch(console.error);
   }
 
@@ -167,8 +169,9 @@ function App() {
   function handleCardLike(item, isLiked) {
     changeLikeStatus(item._id, isLiked)
       .then((updatedCard) => {
+        // ✅ FIXED: Use updatedCard.data to match the nested server response
         setClothingItems((cards) =>
-          cards.map((c) => (c._id === item._id ? updatedCard : c))
+          cards.map((c) => (c._id === item._id ? updatedCard.data : c))
         );
       })
       .catch(console.error);
@@ -179,15 +182,18 @@ function App() {
     setSelectedCard(card);
     setActiveModal("preview");
   }
- console.log(activeModal)
+
+  console.log(activeModal);
+
   // ---------- RENDER ----------
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <BrowserRouter>
         <div className="App">
+          {/* ✅ FIXED: Prop name now matches Header.jsx definition */}
           <Header
             weatherData={weatherData}
-            onAddItem={handleAddItemClick}
+            handleAddClick={handleAddItemClick}
             onLoginClick={handleLoginClick}
             onRegisterClick={handleSignUpClick}
             isLoggedIn={isLoggedIn}
@@ -207,7 +213,6 @@ function App() {
                 />
               }
             />
-
             {/* ---------- PROFILE PAGE (PROTECTED) ---------- */}
             <Route
               path="/profile"
@@ -223,7 +228,7 @@ function App() {
                     })}
                     onCardClick={handleCardClick}
                     onCardLike={handleCardLike}
-                    onAddClick={handleAddItemClick}  // ✅ opens AddItemModal
+                    onAddClick={handleAddItemClick} // ✅ opens AddItemModal
                     onEditProfileClick={handleEditProfileModal}
                     onCardDelete={handleDeleteClick}
                     onSignOut={handleSignOut}
@@ -242,6 +247,7 @@ function App() {
               onClose={handleCloseModal}
               onLogin={handleLogin}
               onSignUpClick={handleSignUpClick}
+              isOpen={activeModal === "login"}
             />
           )}
 
@@ -250,6 +256,7 @@ function App() {
               onClose={handleCloseModal}
               onSignUp={handleSignUp}
               onLoginClick={handleLoginClick}
+              isOpen={activeModal === "signup"}
             />
           )}
 

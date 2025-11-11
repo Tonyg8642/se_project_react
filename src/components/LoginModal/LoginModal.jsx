@@ -1,7 +1,8 @@
 import useForm from "../../hooks/useForm";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function LoginModal({ onClose, onLogin }) {
+function LoginModal({ isOpen, onClose, onLogin, onSignUpClick }) {
+  if (!isOpen) return null;
   // ✅ useForm replaces useState for both fields
   const { values, handleChange, errors, isValid, resetForm } = useForm({
     email: "",
@@ -20,7 +21,7 @@ function LoginModal({ onClose, onLogin }) {
     <ModalWithForm
       title="Login"
       buttonText="Sign In"
-      isOpen={true}
+      isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
       className="modal__login_container"
@@ -55,6 +56,10 @@ function LoginModal({ onClose, onLogin }) {
         disabled={!isValid}
       >
         Sign In
+      </button>
+
+      <button type="button" className="modal__link" onClick={onSignUpClick}>
+        Sign Up
       </button>
     </ModalWithForm>
   );

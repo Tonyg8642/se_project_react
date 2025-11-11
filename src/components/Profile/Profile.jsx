@@ -12,7 +12,8 @@ export default function Profile({
   onEditProfileClick,
   onSignOut,
   onAddClick, // ✅ new prop to open AddItemModal
-  isLoggedIn
+  isLoggedIn,
+  onCardLike
 }) {
   const navigate = useNavigate();
   const currentUser = useContext(CurrentUserContext);
@@ -29,20 +30,19 @@ export default function Profile({
         name={currentUser.name}
         avatar={currentUser.avatar}
         onEditProfileClick={onEditProfileClick}
+        handleSignOut={handleSignOut}
       />
 
       {/* ---------- RIGHT SECTION ---------- */}
       <div className="profile__content">
-        <button className="profile__signout-button" onClick={handleSignOut}>
-          Sign out
-        </button>
+       
 
-        {/* ✅ Pass onOpen handler to ClothesSection */}
+        {}
         <ClothesSection
           onCardClick={onCardClick}
           clothingItems={clothingItems}
           onOpen={onAddClick}
-          onCardLike={onCardClick}
+          onCardLike={onCardLike}
           isLoggedIn={isLoggedIn}
         />
       </div>

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./SignUpModal.css";
 
-function SignUpModal({ onClose, onSignUp, onLoginClick }) {
+function SignUpModal({ onClose, onSignUp, onLoginClick, isOpen }) {
+  if (!isOpen) return null;
   // ---------- STATE ----------
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -41,7 +42,8 @@ function SignUpModal({ onClose, onSignUp, onLoginClick }) {
 
   // ---------- JSX ----------
   return (
-    <div className="modal modal_opened">
+    <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
+      
       {/* Background overlay */}
       <div className="modal__overlay" onClick={onClose}></div>
 

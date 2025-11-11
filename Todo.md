@@ -109,3 +109,13 @@ Make sure that the login or sign in button are working.
 
 1. Make the profile page match the figma in terms of the layout and the cards and the side bar. All of the buttons and the add buttons
 2. 
+
+---------------------------------------------------------------
+
+1. Implement the same style in editPofile modal as I have in AddItemModal
+2. add an accept property for a request headers for the register and login in auth.js 
+{
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+3. 
