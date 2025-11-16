@@ -36,11 +36,13 @@ function App() {
   // ---------- STATE ----------
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
+
   const [weatherData, setWeatherData] = useState({
     temp: { F: 0, C: 0 },
     type: "",
     city: "",
   });
+
   const [clothingItems, setClothingItems] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -67,6 +69,7 @@ function App() {
   useEffect(() => {
     const token = getToken();
     if (!token) return;
+
     checkToken(token)
       .then((userData) => {
         setCurrentUser(userData);
@@ -76,21 +79,10 @@ function App() {
   }, []);
 
   // ---------- MODAL CONTROLS ----------
-  function handleAddItemClick() {
-    setActiveModal("add-garment");
-  }
-
-  function handleEditProfileModal() {
-    setActiveModal("edit-profile");
-  }
-
-  function handleLoginClick() {
-    setActiveModal("login");
-  }
-
-  function handleSignUpClick() {
-    setActiveModal("signup");
-  }
+  const handleAddItemClick = () => setActiveModal("add-garment");
+  const handleEditProfileModal = () => setActiveModal("edit-profile");
+  const handleLoginClick = () => setActiveModal("login");
+  const handleSignUpClick = () => setActiveModal("signup");
 
   function handleCloseModal() {
     setActiveModal("");
@@ -114,7 +106,7 @@ function App() {
 
   function handleSignUp({ name, avatar, email, password }) {
     register({ name, avatar, email, password })
-      .then(() => handleLogin({ email, password })) // auto-login after sign up
+      .then(() => handleLogin({ email, password })) // auto-login
       .catch(console.error);
   }
 
@@ -127,11 +119,12 @@ function App() {
   // ---------- ADD ITEM ----------
   function handleAddItem(itemData) {
     setIsLoading(true);
+
     addItem(itemData)
       .then((newItem) => {
-        // ✅ FIXED: Use newItem.data to correctly access the item from server response
+        // Backend returns { data: item }
         setClothingItems((prevItems) => [newItem.data, ...prevItems]);
-        handleCloseModal(); // ✅ close only after success
+        handleCloseModal();
       })
       .catch(console.error)
       .finally(() => setIsLoading(false));
@@ -142,9 +135,8 @@ function App() {
     editProfile(updatedUserData)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
-        handleCloseModal(); // ✅ close after success
+        handleCloseModal();
       })
-      
       .catch(console.error);
   }
 
@@ -169,7 +161,7 @@ function App() {
   function handleCardLike(item, isLiked) {
     changeLikeStatus(item._id, isLiked)
       .then((updatedCard) => {
-        // ✅ FIXED: Use updatedCard.data to match the nested server response
+        // Backend returns { data: item }
         setClothingItems((cards) =>
           cards.map((c) => (c._id === item._id ? updatedCard.data : c))
         );
@@ -183,14 +175,11 @@ function App() {
     setActiveModal("preview");
   }
 
-  console.log(activeModal);
-
   // ---------- RENDER ----------
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <BrowserRouter>
         <div className="App">
-          {/* ✅ FIXED: Prop name now matches Header.jsx definition */}
           <Header
             weatherData={weatherData}
             handleAddClick={handleAddItemClick}
@@ -213,7 +202,8 @@ function App() {
                 />
               }
             />
-            {/* ---------- PROFILE PAGE (PROTECTED) ---------- */}
+
+            {/* ---------- PROFILE PAGE ---------- */}
             <Route
               path="/profile"
               element={
@@ -224,15 +214,16 @@ function App() {
                         typeof item.owner === "string"
                           ? item.owner
                           : item.owner?._id;
+
                       return ownerId === currentUser._id;
                     })}
                     onCardClick={handleCardClick}
                     onCardLike={handleCardLike}
-                    onAddClick={handleAddItemClick} // ✅ opens AddItemModal
+                    onAddClick={handleAddItemClick}
                     onEditProfileClick={handleEditProfileModal}
                     onCardDelete={handleDeleteClick}
                     onSignOut={handleSignOut}
-                    isLoggedIn={isLoggedIn} // ✅ enables like buttons
+                    isLoggedIn={isLoggedIn}
                   />
                 </ProtectedRoute>
               }
@@ -247,7 +238,7 @@ function App() {
               onClose={handleCloseModal}
               onLogin={handleLogin}
               onSignUpClick={handleSignUpClick}
-              isOpen={activeModal === "login"}
+              isOpen={true}
             />
           )}
 
@@ -256,22 +247,21 @@ function App() {
               onClose={handleCloseModal}
               onSignUp={handleSignUp}
               onLoginClick={handleLoginClick}
-              isOpen={activeModal === "signup"}
+              isOpen={true}
             />
           )}
 
           {activeModal === "add-garment" && (
             <AddItemModal
-              isOpen={activeModal === "add-garment"}
+              isOpen={true}
               onClose={handleCloseModal}
               onAddItem={handleAddItem}
-              isLoading={isLoading}
             />
           )}
 
           {activeModal === "edit-profile" && (
             <EditProfileModal
-              isOpen={activeModal === "edit-profile"}
+              isOpen={true}
               onClose={handleCloseModal}
               onUpdateUser={handleUpdateUser}
             />

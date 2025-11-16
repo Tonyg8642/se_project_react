@@ -119,3 +119,18 @@ Make sure that the login or sign in button are working.
       "Content-Type": "application/json",
     },
 3. 
+
+
+
+
+------------------------------------------------------------------------------------------------
+
+1. Add the secondary button to modalWithForm component. Insure that it is located where it should be on the right side of the submit 
+button.
+
+2. Dynamictally render the button depending on a prop that is being passed from signup or registerModal. This prop can be called 
+secondary button text.
+
+3. In modalWithForm component, do this. 
+
+1.{secondaryButtonText && (insert the button)} do this in the return statement in the ModalWithForm component.

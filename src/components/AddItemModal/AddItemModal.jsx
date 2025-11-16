@@ -53,7 +53,7 @@ function AddItemModal({ isOpen, onAddItem, onClose, isLoading }) {
 
       <label className="modal__label">
         Select the weather type
-        <div className="modal__radio-group">
+        <div className="modal__temp-selections">
           <label>
             <input
               type="radio"

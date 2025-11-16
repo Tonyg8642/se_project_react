@@ -96,6 +96,7 @@
   font-weight: 700;
   font-size: 16px;
   border: none;
+  background: transparent;
 }
 
 .modal__footer-row {
@@ -140,6 +141,13 @@
   background: #0000004d;
 }
 
+.modal__secondary-button {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+}
+
 .modal__form {
   display: flex;
   flex-direction: column;
@@ -166,11 +174,12 @@
   border-bottom: 1px solid;
 }
 
-.modal__radio-buttons {
+.modal__temp-selections {
   border: none;
   padding: 0;
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .modal__legend {

@@ -25,6 +25,9 @@ function LoginModal({ isOpen, onClose, onLogin, onSignUpClick }) {
       onClose={onClose}
       onSubmit={handleSubmit}
       className="modal__login_container"
+      isValid={isValid}
+      secondaryButtonText="or Sign Up" 
+      onSecondaryClick={onSignUpClick}
     >
       <input
         type="email"
@@ -50,17 +53,13 @@ function LoginModal({ isOpen, onClose, onLogin, onSignUpClick }) {
       <span className="modal__error">{errors.password}</span>
 
       {/* ✅ Disable submit when invalid */}
-      <button
+      {/* <button
         type="submit"
         className={`modal__submit ${!isValid ? "modal__submit_disabled" : ""}`}
         disabled={!isValid}
       >
         Sign In
-      </button>
-
-      <button type="button" className="modal__link" onClick={onSignUpClick}>
-        Sign Up
-      </button>
+      </button> */}
     </ModalWithForm>
   );
 }
