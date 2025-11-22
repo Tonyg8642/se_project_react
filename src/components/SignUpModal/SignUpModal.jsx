@@ -1,47 +1,35 @@
-
 import "./SignUpModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import useForm from "../../hooks/useForm";
 
 function SignUpModal({ onClose, onSignUp, onLoginClick, isOpen }) {
-  const { values, handleChange, errors, isValid, resetForm } = useForm({
+  const { values, handleChange, errors, isValid } = useForm({
     email: "",
     password: "",
-    name:"",
-    avatar:"",
+    name: "",
+    avatar: "",
   });
 
-  // Validate avatar URL on blur
+  // Optional avatar validation on blur
   function handleAvatarBlur() {
-    if (!avatar.startsWith("http")) {
-      setIsError(true);
-    } else {
-      setIsError(false);
+    if (values.avatar && !values.avatar.startsWith("http")) {
+      // Optional: You can show a custom message
+      console.warn("Avatar URL must start with http");
     }
   }
 
-  // Submit handler
   function handleSubmit(e) {
     e.preventDefault();
 
-    // Validate avatar URL before submitting
-    // if (!avatar.startsWith("http")) {
-    //   setIsError(true);
-    //   return;
-    // }
+    onSignUp({
+      email: values.email,
+      password: values.password,
+      name: values.name,
+      avatar: values.avatar,
+    });
 
-    // Clear error state
-    // setIsError(false);
-
-    // Pass data up to App.jsx
-    onSignUp({email:values.email, password:values.password, name:values.name, avatar:values.avatar})
-    resetForm();
-
-    // ❌ Removed reset lines:
-    // setName("");
-    // setAvatar("");
-    // setEmail("");
-    // setPassword("");
+    // ❌ remove resetForm() — reviewer said not to wipe user's input
+    // resetForm();
   }
 
   return (
@@ -56,7 +44,6 @@ function SignUpModal({ onClose, onSignUp, onLoginClick, isOpen }) {
       className="modal__signup-container"
       isValid={isValid}
     >
-      {/* NAME INPUT */}
       <input
         type="text"
         name="name"
@@ -67,7 +54,6 @@ function SignUpModal({ onClose, onSignUp, onLoginClick, isOpen }) {
         required
       />
 
-      {/* AVATAR INPUT */}
       <input
         type="url"
         name="avatar"
@@ -79,7 +65,6 @@ function SignUpModal({ onClose, onSignUp, onLoginClick, isOpen }) {
         required
       />
 
-      {/* EMAIL INPUT */}
       <input
         type="email"
         name="email"
@@ -90,7 +75,6 @@ function SignUpModal({ onClose, onSignUp, onLoginClick, isOpen }) {
         required
       />
 
-      {/* PASSWORD INPUT */}
       <input
         type="password"
         name="password"
@@ -100,10 +84,6 @@ function SignUpModal({ onClose, onSignUp, onLoginClick, isOpen }) {
         onChange={handleChange}
         required
       />
-
-      
-
-      {/* ❌ Removed duplicate submit and secondary button block here */}
     </ModalWithForm>
   );
 }

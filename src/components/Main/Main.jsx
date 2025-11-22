@@ -5,7 +5,13 @@ import ItemCard from "../ItemCard/ItemCard";
 import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({ weatherData, onCardClick, onCardLike, clothingItems, isLoggedIn }) {
+function Main({
+  weatherData,
+  onCardClick,
+  onCardLike,
+  clothingItems,
+  isLoggedIn,
+}) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   return (
@@ -22,16 +28,17 @@ function Main({ weatherData, onCardClick, onCardLike, clothingItems, isLoggedIn 
         </p>
 
         <ul className="cards__list">
-          {clothingItems.map((item) => (
-            // Render each clothing item card with click & like handlers
-            <ItemCard
-              key={item._id}
-              item={item}
-              onCardClick={onCardClick}
-              onCardLike={onCardLike}
-              isLoggedIn={isLoggedIn}
-            />
-          ))}
+          {clothingItems
+            .filter((item) => item.weather === weatherData.type) // ✅ FILTER IMPLEMENTED
+            .map((item) => (
+              <ItemCard
+                key={item._id}
+                item={item}
+                onCardClick={onCardClick}
+                onCardLike={onCardLike}
+                isLoggedIn={isLoggedIn}
+              />
+            ))}
         </ul>
       </section>
     </main>

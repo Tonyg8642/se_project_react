@@ -3,8 +3,8 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function LoginModal({ isOpen, onClose, onLogin, onSignUpClick }) {
   if (!isOpen) return null;
-  // ✅ useForm replaces useState for both fields
-  const { values, handleChange, errors, isValid, resetForm } = useForm({
+
+  const { values, handleChange, errors, isValid } = useForm({
     email: "",
     password: "",
   });
@@ -14,7 +14,6 @@ function LoginModal({ isOpen, onClose, onLogin, onSignUpClick }) {
     if (!isValid) return; // stop submission if form invalid
 
     onLogin({ email: values.email, password: values.password });
-    resetForm(); // clears inputs after submit
   }
 
   return (
@@ -26,7 +25,7 @@ function LoginModal({ isOpen, onClose, onLogin, onSignUpClick }) {
       onSubmit={handleSubmit}
       className="modal__login_container"
       isValid={isValid}
-      secondaryButtonText="or Sign Up" 
+      secondaryButtonText="or Sign Up"
       onSecondaryClick={onSignUpClick}
     >
       <input
@@ -51,15 +50,6 @@ function LoginModal({ isOpen, onClose, onLogin, onSignUpClick }) {
         required
       />
       <span className="modal__error">{errors.password}</span>
-
-      {/* ✅ Disable submit when invalid */}
-      {/* <button
-        type="submit"
-        className={`modal__submit ${!isValid ? "modal__submit_disabled" : ""}`}
-        disabled={!isValid}
-      >
-        Sign In
-      </button> */}
     </ModalWithForm>
   );
 }
