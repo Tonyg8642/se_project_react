@@ -15,7 +15,6 @@ function ModalWithForm({
 }) {
   return (
     <div className={`modal ${isOpen ? "modal_opened" : ""}`}>
-      
       {/* 🔹 Overlay background for closing modal */}
       <div className="modal__overlay" onClick={onClose}></div>
 
@@ -33,8 +32,7 @@ function ModalWithForm({
         <h2 className="modal__title">{title}</h2>
 
         {/* Form */}
-        <form onSubmit={onSubmit} className="modal__form">
-
+        <form onSubmit={onSubmit} className="modal__form"> 
           {/* Dynamic form fields passed as children */}
           {children}
 
@@ -44,7 +42,7 @@ function ModalWithForm({
             <button
               type="submit"
               className={`modal__submit ${
-                !isValid ? "modal__submit_disabled" : ""
+                !isValid ? "modal__submit-invalid" : ""
               }`}
               disabled={!isValid}
             >

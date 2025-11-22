@@ -138,7 +138,12 @@
   border-radius: 8px;
   margin-top: 32px;
   border: none;
-  background: #0000004d;
+  background-color: rgba(0, 0, 0, 1);
+  color: rgba(255, 255, 255, 1);
+}
+
+.modal__submit-invalid {
+  background-color: #7a7a7a;
 }
 
 .modal__secondary-button {

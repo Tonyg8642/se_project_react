@@ -1,14 +1,17 @@
-import { useState } from "react";
+
 import "./SignUpModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import useForm from "../../hooks/useForm";
 
 function SignUpModal({ onClose, onSignUp, onLoginClick, isOpen }) {
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isError, setIsError] = useState(false);
+  const { values, handleChange, errors, isValid, resetForm } = useForm({
+    email: "",
+    password: "",
+    name:"",
+    avatar:"",
+  });
 
+  // Validate avatar URL on blur
   function handleAvatarBlur() {
     if (!avatar.startsWith("http")) {
       setIsError(true);
@@ -17,18 +20,28 @@ function SignUpModal({ onClose, onSignUp, onLoginClick, isOpen }) {
     }
   }
 
+  // Submit handler
   function handleSubmit(e) {
     e.preventDefault();
-    if (!avatar.startsWith("http")) {
-      setIsError(true);
-      return;
-    }
-    setIsError(false);
-    onSignUp({ name, avatar, email, password });
-    setName("");
-    setAvatar("");
-    setEmail("");
-    setPassword("");
+
+    // Validate avatar URL before submitting
+    // if (!avatar.startsWith("http")) {
+    //   setIsError(true);
+    //   return;
+    // }
+
+    // Clear error state
+    // setIsError(false);
+
+    // Pass data up to App.jsx
+    onSignUp({email:values.email, password:values.password, name:values.name, avatar:values.avatar})
+    resetForm();
+
+    // ❌ Removed reset lines:
+    // setName("");
+    // setAvatar("");
+    // setEmail("");
+    // setPassword("");
   }
 
   return (
@@ -38,84 +51,61 @@ function SignUpModal({ onClose, onSignUp, onLoginClick, isOpen }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      secondaryButtonText="or Log In"
+      onSecondaryClick={onLoginClick}
+      className="modal__signup-container"
+      isValid={isValid}
     >
-      {/* Email */}
-      <label className="modal__label-email" htmlFor="email">
-        Email*
-      </label>
+      {/* NAME INPUT */}
       <input
-        id="email"
-        type="email"
-        className="modal__input"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-
-      {/* Password */}
-      <label className="modal__label-password" htmlFor="password">
-        Password*
-      </label>
-      <input
-        id="password"
-        type="password"
-        className="modal__input"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-
-      {/* Name */}
-      <label className="modal__label-name" htmlFor="name">
-        Name*
-      </label>
-      <input
-        id="name"
         type="text"
+        name="name"
         className="modal__input"
         placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        value={values.name}
+        onChange={handleChange}
         required
       />
 
-      {/* Avatar URL */}
-      <label className="modal__label-avatarURL" htmlFor="avatar">
-        Avatar URL*
-      </label>
+      {/* AVATAR INPUT */}
       <input
-        id="avatar"
         type="url"
+        name="avatar"
         className="modal__input"
         placeholder="Avatar URL"
-        value={avatar}
-        onChange={(e) => setAvatar(e.target.value)}
+        value={values.avatar}
+        onChange={handleChange}
         onBlur={handleAvatarBlur}
         required
       />
 
-      {/* Error message */}
-      {isError && (
-        <span className="modal__error-text">Please enter a valid URL.</span>
-      )}
+      {/* EMAIL INPUT */}
+      <input
+        type="email"
+        name="email"
+        className="modal__input"
+        placeholder="Email"
+        value={values.email}
+        onChange={handleChange}
+        required
+      />
 
-      {/* Footer row */}
-      <div className="modal__footer-row">
-        <button type="submit" className="modal__button-SignUp">
-          Sign Up
-        </button>
-        <button
-          type="button"
-          className="modal__button-orLogin"
-          onClick={onLoginClick}
-        >
-          or Log In
-        </button>
-      </div>
+      {/* PASSWORD INPUT */}
+      <input
+        type="password"
+        name="password"
+        className="modal__input"
+        placeholder="Password"
+        value={values.password}
+        onChange={handleChange}
+        required
+      />
+
+      
+
+      {/* ❌ Removed duplicate submit and secondary button block here */}
     </ModalWithForm>
   );
 }
 
-export default SignUpModal
+export default SignUpModal;
