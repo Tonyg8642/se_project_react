@@ -10,26 +10,14 @@ function SignUpModal({ onClose, onSignUp, onLoginClick, isOpen }) {
     avatar: "",
   });
 
-  // Optional avatar validation on blur
-  function handleAvatarBlur() {
-    if (values.avatar && !values.avatar.startsWith("http")) {
-      // Optional: You can show a custom message
-      console.warn("Avatar URL must start with http");
-    }
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
-
     onSignUp({
       email: values.email,
       password: values.password,
       name: values.name,
       avatar: values.avatar,
     });
-
-    // ❌ remove resetForm() — reviewer said not to wipe user's input
-    // resetForm();
   }
 
   return (
@@ -44,46 +32,61 @@ function SignUpModal({ onClose, onSignUp, onLoginClick, isOpen }) {
       className="modal__signup-container"
       isValid={isValid}
     >
-      <input
-        type="text"
-        name="name"
-        className="modal__input"
-        placeholder="Name"
-        value={values.name}
-        onChange={handleChange}
-        required
-      />
+      <label className="modal__label">
+        Name
+        <input
+          type="text"
+          name="name"
+          className="modal__input"
+          placeholder="Name"
+          value={values.name}
+          onChange={handleChange}
+          required
+        />
+      </label>
+      <span className="modal__error">{errors.name}</span>
 
-      <input
-        type="url"
-        name="avatar"
-        className="modal__input"
-        placeholder="Avatar URL"
-        value={values.avatar}
-        onChange={handleChange}
-        onBlur={handleAvatarBlur}
-        required
-      />
+      <label className="modal__label">
+        Avatar URL
+        <input
+          type="url"
+          name="avatar"
+          className="modal__input"
+          placeholder="Avatar URL"
+          value={values.avatar}
+          onChange={handleChange}
+          required
+        />
+      </label>
+      <span className="modal__error">{errors.avatar}</span>
 
-      <input
-        type="email"
-        name="email"
-        className="modal__input"
-        placeholder="Email"
-        value={values.email}
-        onChange={handleChange}
-        required
-      />
+      <label className="modal__label">
+        Email
+        <input
+          type="email"
+          name="email"
+          className="modal__input"
+          placeholder="Email"
+          value={values.email}
+          onChange={handleChange}
+          required
+        />
+      </label>
+      <span className="modal__error">{errors.email}</span>
 
-      <input
-        type="password"
-        name="password"
-        className="modal__input"
-        placeholder="Password"
-        value={values.password}
-        onChange={handleChange}
-        required
-      />
+      <label className="modal__label">
+        Password
+        <input
+          type="password"
+          name="password"
+          className="modal__input"
+          placeholder="Password"
+          value={values.password}
+          onChange={handleChange}
+          required
+        />
+      </label>
+      <span className="modal__error">{errors.password}</span>
     </ModalWithForm>
   );
 }

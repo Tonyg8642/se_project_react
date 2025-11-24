@@ -11,8 +11,7 @@ function LoginModal({ isOpen, onClose, onLogin, onSignUpClick }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!isValid) return; // stop submission if form invalid
-
+    if (!isValid) return;
     onLogin({ email: values.email, password: values.password });
   }
 
@@ -28,27 +27,33 @@ function LoginModal({ isOpen, onClose, onLogin, onSignUpClick }) {
       secondaryButtonText="or Sign Up"
       onSecondaryClick={onSignUpClick}
     >
-      <input
-        type="email"
-        name="email"
-        className="modal__input"
-        placeholder="Email"
-        value={values.email || ""}
-        onChange={handleChange}
-        required
-      />
+      <label className="modal__label">
+        Email
+        <input
+          type="email"
+          name="email"
+          className="modal__input"
+          placeholder="Email"
+          value={values.email || ""}
+          onChange={handleChange}
+          required
+        />
+      </label>
       <span className="modal__error">{errors.email}</span>
 
-      <input
-        type="password"
-        name="password"
-        className="modal__input"
-        placeholder="Password"
-        value={values.password || ""}
-        onChange={handleChange}
-        minLength="6"
-        required
-      />
+      <label className="modal__label">
+        Password
+        <input
+          type="password"
+          name="password"
+          className="modal__input"
+          placeholder="Password"
+          value={values.password || ""}
+          onChange={handleChange}
+          minLength="6"
+          required
+        />
+      </label>
       <span className="modal__error">{errors.password}</span>
     </ModalWithForm>
   );
