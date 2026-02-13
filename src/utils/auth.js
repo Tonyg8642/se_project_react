@@ -1,7 +1,11 @@
 // 📁 src/utils/auth.js
 import { handleResponse } from "./api";
 
-export const BASE_URL = "http://localhost:3001";
+// ---------- Base URL for backend AUTH ----------
+const BASE_URL =
+  import.meta.env.MODE === "production"
+    ? "https://api.wtwr12.mooo.com"
+    : "http://localhost:3001";
 
 // ---------- AUTH REQUESTS ----------
 export function register({ name, avatar, email, password }) {
@@ -22,7 +26,6 @@ export function login({ email, password }) {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-
     body: JSON.stringify({ email, password }),
   }).then(handleResponse);
 }

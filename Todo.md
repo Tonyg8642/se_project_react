@@ -134,3 +134,26 @@ secondary button text.
 3. In modalWithForm component, do this. 
 
 1.{secondaryButtonText && (insert the button)} do this in the return statement in the ModalWithForm component.
+
+
+--------------------------------------------------------------------------------------------------------
+
+1. First insure all api request are fine: addItem, deleteItem, LkeItem, DisLikeItem, EditProfile. I should be able to do all of these locally.
+
+2. Then commit and push
+
+3. Then uploading again to the machine
+
+Revisit instructions to uploading code to the machine.
+
+
+-------------------------------------------------------
+
+1. Remove the previous instance mechine
+
+2. Clean up my notes. Removing all the older subdomains, ignorelist and the ducksdns sight
+
+-------------------------------------------------------------------------------------------
+
+1. Your clothingItems in your controller folderhas  a function to edit the card like that is not working because 
+it can not find req.user._id, thi is because the frontend in api.js does not pass a user over. therefore it comes over empty

@@ -50,7 +50,6 @@ function LoginModal({ isOpen, onClose, onLogin, onSignUpClick }) {
           placeholder="Password"
           value={values.password || ""}
           onChange={handleChange}
-          minLength="6"
           required
         />
       </label>
