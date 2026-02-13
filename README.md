@@ -8,9 +8,16 @@
 1. React FrontEnd
 2. Express BackEnd
 3. Mongo DB as a database
-4. Centerlized Error Handling
-5. Winston Library
-6. Joi for Validation 
+4. Moongoose
+5. Jwt Authentication
+6. Bcrypt for password hashing
+7. Centerlized Error Handling
+8. Winston Library for logging
+9. PM2 for process management
+10. Joi for Validation
+11. Nginx reverse proxy
+12. SSL via CERTBOT
+13. Deployed on Goggole Cloud VM 
 
 
 5. A video demo of your project (highly recommended)
@@ -38,9 +45,5 @@ Repository links:
 			
 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
