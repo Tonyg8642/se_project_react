@@ -49,7 +49,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // ---------- NEW: TEMPERATURE UNIT STATE ----------
+  // ---------- TEMPERATURE UNIT STATE ----------
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   function handleToggleSwitchChange() {
@@ -91,6 +91,7 @@ function App() {
   const handleEditProfileModal = () => setActiveModal("edit-profile");
   const handleLoginClick = () => setActiveModal("login");
   const handleSignUpClick = () => setActiveModal("signup");
+
   const handleCloseModal = () => {
     setActiveModal("");
     setSelectedCard(null);
@@ -129,7 +130,7 @@ function App() {
 
     addItem(itemData)
       .then((newItem) => {
-        setClothingItems((prevItems) => [newItem.data, ...prevItems]);
+        setClothingItems((prevItems) => [newItem, ...prevItems]);
         handleCloseModal();
       })
       .catch(console.error)
@@ -168,7 +169,7 @@ function App() {
     changeLikeStatus(item._id, isLiked)
       .then((updatedCard) => {
         setClothingItems((cards) =>
-          cards.map((c) => (c._id === item._id ? updatedCard.data : c))
+          cards.map((c) => (c._id === item._id ? updatedCard : c))
         );
       })
       .catch(console.error);
